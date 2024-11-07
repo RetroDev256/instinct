@@ -5,13 +5,9 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
     // Library
-    const lib = b.addStaticLibrary(.{
-        .name = "instinct",
+    _ = b.addModule("instinct", .{
         .root_source_file = b.path("src/root.zig"),
-        .target = target,
-        .optimize = optimize,
     });
-    b.installArtifact(lib);
 
     // Tests
     const lib_unit_tests = b.addTest(.{
